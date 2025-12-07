@@ -120,6 +120,90 @@ nav {
     box-shadow: 0 0 15px var(--accent-color);
 }
 
+/* Hamburger toggle (mobile) */
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    border-radius: 999px;
+    background: #ffffff;
+    transition: var(--transition);
+}
+
+/* Toggle animation to X */
+.nav-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile nav */
+.mobile-nav {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.97);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem 7%;
+    gap: 0.5rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    z-index: 900;
+}
+
+.mobile-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-nav-link {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #dddddd;
+}
+
+.mobile-nav-link:hover {
+    color: var(--accent-color);
+}
+
+.mobile-nav-follow {
+    margin-top: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--accent-color);
+    background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+    color: #000;
+}
+
 /* --- HERO SECTION --- */
 .hero {
     min-height: 100vh;
@@ -150,7 +234,8 @@ nav {
     line-height: 1.1;
     margin-bottom: 1rem;
     background: -webkit-linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
-    -webkit-background-clip: text;
+    background-clip: text;           /* standard property */
+    -webkit-background-clip: text;   /* for WebKit */
     -webkit-text-fill-color: transparent;
 }
 
@@ -413,6 +498,82 @@ nav {
     margin-bottom: 1rem;
 }
 
+/* --- INSTAGRAM PREVIEW SECTION --- */
+.insta-section {
+    padding-top: 4rem;
+}
+
+.insta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.7rem;
+}
+
+.insta-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: #111111;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    padding: 1.2rem 1.4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition);
+}
+
+.insta-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+    transform: translateY(-6px);
+}
+
+.insta-thumb {
+    flex-shrink: 0;
+    height: 64px;
+    width: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top left, var(--accent-color), #111122);
+    font-size: 1.2rem;
+}
+
+.reel-thumb {
+    background: radial-gradient(circle at top left, var(--accent-secondary), #111122);
+}
+
+.carousel-thumb {
+    background: radial-gradient(circle at top left, #00f2ff, #222244);
+}
+
+.quote-thumb {
+    background: radial-gradient(circle at top left, #ffdd55, #332200);
+}
+
+.insta-thumb i {
+    color: #ffffff;
+}
+
+.insta-meta h3 {
+    font-size: 0.98rem;
+    margin: 0.4rem 0 0.3rem;
+}
+
+.insta-meta .card-link {
+    font-size: 0.85rem;
+}
+
+.insta-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    color: var(--muted-text);
+}
+
 /* --- ABOUT SECTION --- */
 .about-section {
     background: radial-gradient(circle at top, #141414 0%, #050505 55%);
@@ -556,6 +717,10 @@ footer {
         display: none; /* keeps it super clean on very small screens */
     }
 
+    .nav-toggle {
+        display: flex;
+    }
+
     .hero {
         text-align: left;
     }
@@ -569,5 +734,9 @@ footer {
 
     .section-title {
         font-size: 1.7rem;
+    }
+
+    .insta-card {
+        flex-direction: row;
     }
 }

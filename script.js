@@ -16,7 +16,8 @@ const animatedSelectors = [
   ".info-card",
   ".audience-pill",
   ".featured-card",
-  ".collab-box"
+  ".collab-box",
+  ".insta-card" // new: instagram preview cards
 ];
 
 animatedSelectors.forEach((selector) => {
@@ -44,5 +45,24 @@ const logoContainer = document.querySelector(".logo-container");
 if (logoContainer) {
   logoContainer.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+// Mobile nav toggle
+const navToggle = document.querySelector(".nav-toggle");
+const mobileNav = document.querySelector(".mobile-nav");
+
+if (navToggle && mobileNav) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = mobileNav.classList.toggle("open");
+    navToggle.classList.toggle("open", isOpen);
+  });
+
+  // Close mobile nav when clicking a link
+  mobileNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileNav.classList.remove("open");
+      navToggle.classList.remove("open");
+    });
   });
 }
